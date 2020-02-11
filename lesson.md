@@ -1,12 +1,14 @@
 #### Table of contents:
 - [scope & visibilità](#scope-e-visibilità)
-  - [parametri attuali e formali](#parametri-attuali-e-formali)
+  - [parametri attuali e formali](#parametri)
 - [stack](#stack)
 - [funzioni ricorsive](#funzioni-ricorsive)
   - [definizione](#definizione)
   - [Ricorsione diretta](#ricorsione-diretta)
   - [Ricorsione indiretta](#ricorsione-indiretta)
-  - [Alcune applicazioni](#alcune-applicazioni)
+- [Alcune applicazioni](#alcune-applicazioni)
+  - [Divide & Conquer](#divide--conquer)
+  - [Programmazione Dinamica](#programmazione-dinamica)
 - [ricorsione vs iterazione](#ricorsione-vs-iterazione)
 - [tail call optimization](#tail-call)
 - [esercizi](#esercizi)
@@ -15,30 +17,73 @@
 
 ## Scope e visibilità
 
----
+[link1]:https://www.w3schools.in/c-tutorial/variable-scope/
 
-### Parametri attuali e formali
+>A scope is a region of the program, and the scope of variables refers to the area of the program where the variables can be accessed after its declaration. [source](link1)
+
+In C ogni variabile è definita in uno scope, all'interno della quale esiste ed è accessibile. La stessa variabile non potrà essere usata o letta al di fuori del suo scope.
+
+Le variabili possono essere definite in 3 posti:
++ localmente
++ globalmente
++ come parametri
+
+#### Variabili locali
+
+Tutte le variabili definite all'interno di un blocco {} (che sarà il loro scope). Possono essere usate solo al suo interno.`
+
+#### Variabili globali
+
+Variabili accessibili da tutto il programma in ogni momento, definite fuori da ogni blocco.
+A differenza delle locali, le globali vengono inizializzate automaticamente a 0 dal compilatore. 
+
+#### Parametri
+Sono variabili dichiarate insieme al prototipo della funzione, e hanno come scope tutta la funzione, trattate come fossero variabili locali.
+Vengono inizzializzate al momento della chiamata.
+
+Questo viene detto **parametro formale**. 
+`int func(int a, int b)`, _a_ e _b_ sono parametri formali
+
+Invece le variabili i cui valori vengono passati alla funzione sono detti **parametri attuali** e nel momento della chiamata vanno ad inizzializzare i parametri formali.
+Non hanno un proprio scopo specifico.
+
+`func(5, 10)`, _5_ e _10_ sono parametri attuali, dopo questa chiamata, il programma inizia a svolgere 'func', con _a = 5_ e _b = 10_.
+
+Nel caso in cui i parametri attuali siano definiti nello stesso scope della funzione, dalla funzione potrò accedere dalla funzione ai parametri attuali.
 
 ---
 
 ## Stack
 
-A stack frame can be anything from 4 bytes (32 byte) to hundreds of kilobytes depending on the function it corresponds to
-infatti ogni chiamata di funzione ha un costo di memoria e cicli di clock (tempo)
+Lo stack è l'area di memoria che si occupa di gestire il passaggio di parametri e di risultati tra funzioni. Uno stack per ogni thread, alla fine viene rimosso.
+Il funzionamento è analogo a quello di una pila.
+
+**FI-LO**: First In, Last Out
+
+Ad ogni invocazione di una funzione, le viene riservato un nuovo stack frame, nel quale verranno allocate tutte le variabili locali alla funzione. Il frame corrisponde quindi allo scope per le variabili locali.
+Questo frame sarà sopra la funzione chiamante e sotto la funzione chiamata.
+Non appena la funzione finisce l'esecuzione, il valore restituito viene passato nel frame della funzione chiamante, mentre il suo frame viene eliminato.
+
+La dimensione di ogni frame va da minimo 4 byte a centinaia di kilobyte. Ad ogni chiamata di funzione questo spazio verrà occupato, ed avendo lo stack una dimensione fissa può accadere che finisca la memoria (`Stack overflow`)
+**Ogni chiamata di funzione ha** quindi anche un **costo di memoria** e cicli di clock ( **tempo** ).
+
+![stack structure](https://kuafu1994.github.io/HackWithGDB/figs/stack.png)
+
+[approfondimenti](http://www.dis.uniroma1.it/~liberato/struct/ricorsione/recatt.shtml)
 
 ---
 
 ## Funzioni ricorsive:
 ### Definizione:
+
 >Una funzione è detta ricorsiva se chiama se stessa, direttamente o indirettamente.
 
 oppure
 
 >Un algoritmo ricorsivo è un algoritmo espresso in termini di se stesso
 
----
-
 ### Ricorsione diretta
+
 L'algoritmo richiama se stesso fino al verificarsi di una condizione chiamata condizione di terminazione, che in genere si ha con particolari valori di input.
 
 _Esempio:_ [(fat.c)](examples/fat.c "fat.c")
@@ -50,10 +95,9 @@ int fat(int n){
 		return n*fat(n-1); //chiamata ricorsiva
 }
 ```
-	
----
 
 ### Ricorsione indiretta
+
 Se la funzione chiama se stessa indirettamente, quindi da un'altra funzione, lei stessa deve chiamare la seconda funzione. In questo caso si dicono funzioni mutuamente ricorsive.
 
 _Esempio:_ [(odd_or_even.c)](examples/odd_or_even.c "odd_or_even.c")
@@ -74,11 +118,13 @@ bool odd( int n ){
 
 ---
 
-### Alcune applicazioni:
+## Alcune applicazioni:
 
 [link]:https://medium.com/@maheshkariya/difference-between-divide-and-conquer-algo-and-dynamic-programming-4a657bcb6187 "Medium"
 
-- #### divide et impera / divide & conquer:
+- #### Divide & Conquer:
+
+Detto anche 'divide et impera'
 
 >Divide and Conquer works by dividing the problem into sub-problems, conquer each sub-problem recursively and combine these solutions. ([source][link])
 
@@ -86,7 +132,7 @@ L'esecuzione dell'algoritmo su un insieme di dati comporta la semplificazione o 
 
 È il metodo più elegante, ma spesso porta a ripetere calcoli già svolti.
 
-- #### programmazione dinamica
+- #### Programmazione Dinamica
 
 >Dynamic Programming is a technique for solving problems with overlapping subproblems. Each sub-problem is solved only once and the result of each sub-problem is stored in a table ( generally implemented as an array or a hash table) for future references. These sub-solutions may be used to obtain the original solution and the technique of storing the sub-problem solutions is known as memoization. ([source][link])
 
@@ -159,8 +205,8 @@ int fibonacciTail(int n, int a, int b){
 
 è in grado di fornirmi il risultato.
 
-![](https://rohitawate.github.io/images/posts/2019-07-10-tail-call-optimization/fib.png "stack per fibonacciDC")
-![](https://rohitawate.github.io/images/posts/2019-07-10-tail-call-optimization/fib_tail.png "stack per fibonacciTail")
+![stack fibonacci D&C](https://rohitawate.github.io/images/posts/2019-07-10-tail-call-optimization/fib.png "stack per fibonacciDC")
+![stack fibonacci w/tail](https://rohitawate.github.io/images/posts/2019-07-10-tail-call-optimization/fib_tail.png "stack per fibonacciTail")
 [source](link2)
 
 ---
