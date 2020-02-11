@@ -1,7 +1,6 @@
 #### Table of contents:
-- parametri attuali e formali
-- scope
-- visibilità
+- [scope & visibilità](#scope-e-visibilità)
+  - [parametri attuali e formali](#parametri-attuali-e-formali)
 - [stack](#stack)
 - [funzioni ricorsive](#funzioni-ricorsive)
   - [definizione](#definizione)
@@ -14,10 +13,18 @@
 
 ---
 
+## Scope e visibilità
+
+---
+
+### Parametri attuali e formali
+
+---
+
 ## Stack
 
 A stack frame can be anything from 4 bytes (32 byte) to hundreds of kilobytes depending on the function it corresponds to
-infatti ogni chiamata di funzione ha un costo di memoria e cicli di clock (tempo) superiore alla ricorsione
+infatti ogni chiamata di funzione ha un costo di memoria e cicli di clock (tempo)
 
 ---
 
@@ -83,7 +90,7 @@ L'esecuzione dell'algoritmo su un insieme di dati comporta la semplificazione o 
 
 >Dynamic Programming is a technique for solving problems with overlapping subproblems. Each sub-problem is solved only once and the result of each sub-problem is stored in a table ( generally implemented as an array or a hash table) for future references. These sub-solutions may be used to obtain the original solution and the technique of storing the sub-problem solutions is known as memoization. ([source][link])
 
-[![](https://media.geeksforgeeks.org/wp-content/uploads/01-DP-vs-DC-DP-vs-DC-diagram-1024x492.png)](https://media.geeksforgeeks.org/wp-content/uploads/01-DP-vs-DC-DP-vs-DC-diagram-1024x492.png) [source](https://www.geeksforgeeks.org/dynamic-programming-vs-divide-and-conquer/ "Dynamic programming vs Divide and conquer")
+![](https://media.geeksforgeeks.org/wp-content/uploads/01-DP-vs-DC-DP-vs-DC-diagram-1024x492.png) [source](https://www.geeksforgeeks.org/dynamic-programming-vs-divide-and-conquer/ "G4G, Dynamic programming vs Divide and conquer")
 
 ---
 
@@ -121,11 +128,13 @@ Per confronto, il mio pc ne ha 1048576B reali che è già abbondante, ma  non es
 
 ## Tail call
 
+[link2]:https://dev.to/rohit/demystifying-tail-call-optimization-5bf3
+
 Quando la chiamata ricorsiva è l'ultima istruzione in una funzione, la ricorsione viene detta 'tail recursion'.
 
-Tramite la 'Tail call optimization' è possibile ridurre il costo di spazio di ricorsione della funzione da O(n) a O(1).
+>If a function is tail recursive, it's either making a simple recursive call or returning the value from that call. No computation is performed on the returned value. Thus, there is no real need to preserve the stack frame for that call. We won't need any of the local data once the tail recursive call is made: we don't have any more statements or computations left. We can simply modify the state of the frame as per the call arguments and jump back to the first statement of the function. No need to push a new stack frame! We can do this over and over again with just one stack frame! [source](link2)
 
->If a function is tail recursive, it's either making a simple recursive call or returning the value from that call. No computation is performed on the returned value. Thus, there is no real need to preserve the stack frame for that call. We won't need any of the local data once the tail recursive call is made: we don't have any more statements or computations left. We can simply modify the state of the frame as per the call arguments and jump back to the first statement of the function. No need to push a new stack frame! We can do this over and over again with just one stack frame! [source](https://dev.to/rohit/demystifying-tail-call-optimization-5bf3)
+Riutilizzando quindi lo stesso frame per più chiamate, tramite la 'Tail call optimization' è possibile ridurre il costo di spazio di ricorsione della funzione da O(n) a O(1).
 
 Per esempio una funzione per il calcolo dell'n-esimo numero di [Fibonacci](examples/fibonacci.c "fibonacci.c"), con divide & conquer:
 ```c
@@ -149,6 +158,10 @@ int fibonacciTail(int n, int a, int b){
 ```
 
 è in grado di fornirmi il risultato.
+
+![](https://rohitawate.github.io/images/posts/2019-07-10-tail-call-optimization/fib.png "stack per fibonacciDC")
+![](https://rohitawate.github.io/images/posts/2019-07-10-tail-call-optimization/fib_tail.png "stack per fibonacciTail")
+[source](link2)
 
 ---
 

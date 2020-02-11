@@ -14,8 +14,15 @@ int mcd(int *a, int *b){
 		return *b;
 }
 
+int mcd2(int t, int k){
+	if(k==0)
+		return t;
+	if(k>t)
+		return mcd2(k, t);
+	return mcd2(k, t%k);
+}
 
 void main(){
-	int a=12, b=36;
-	printf("l'mcd di %d e %d e' %d\n", a, b, mcd(&a, &b));
+	int a=12, b=34;
+	printf("l'mcd di %d e %d e' %d\n", a, b, mcd2(a, b));
 }
