@@ -1,4 +1,4 @@
-#### ___Index:___
+#### Table of contents:
 - parametri attuali e formali
 - scope
 - visibilità
@@ -29,10 +29,12 @@ oppure
 
 >Un algoritmo ricorsivo è un algoritmo espresso in termini di se stesso
 
+---
+
 ### Ricorsione diretta
 L'algoritmo richiama se stesso fino al verificarsi di una condizione chiamata condizione di terminazione, che in genere si ha con particolari valori di input.
 
-_Esempio:_ [(fat.c)](examples/fat.c)
+_Esempio:_ [(fat.c)](examples/fat.c "fat.c")
 ```c
 int fat(int n){
 	if (n == 0) //condizione di terminazione
@@ -40,15 +42,14 @@ int fat(int n){
 	else
 		return n*fat(n-1); //chiamata ricorsiva
 }
-void main(){
-	fat(5);
-}
 ```
+
+---
 
 ### Ricorsione indiretta
 Se la funzione chiama se stessa indirettamente, quindi da un'altra funzione, lei stessa deve chiamare la seconda funzione. In questo caso si dicono funzioni mutuamente ricorsive.
 
-_Esempio:_
+_Esempio:_ [(odd_or_even.c)](examples/odd_or_even.c "odd_or_even.c")
 ```c
 bool even( int n ){
 	if( n == 0 )
@@ -97,7 +98,7 @@ L'esecuzione dell'algoritmo su un insieme di dati comporta la semplificazione o 
 
 Consumano + tempo (cicli di clock), e + memoria (min 4 byte x frame)
 
-Un esempio:
+Un esempio: [(recursive-hello.c)](examples/recursive-hello.c "recursive-hello.c")
 ```c
 void hello(int n){
 	if (n == 0) return; //condizione di terminazione
@@ -124,10 +125,11 @@ Per confronto, il mio pc ne ha 1048576B reali che è già abbondante, ma  non es
 
 ## Esercizi :/ </3
 
-- funzione che calcola ricorsivamente la potenza di un numero dato base ed esponente
-- funzione ricorsiva che calcola il massimo comun denominatore di due interi
-- **PRO**: funzione che clacoli l'n-esimo numero di fibonacci, dato n (2 versioni, una con Divide & Conquer, una con programmazione dinamica)
+- funzione che calcola ricorsivamente la potenza di un numero dato base ed esponente. [soluzioni](examples/potenza.c "potenza.c")
+- funzione ricorsiva che calcola il massimo comun denominatore di due interi. [soluzioni](examples/mcd.c "mcd.c")
+- **PRO**: funzione che calcoli l'n-esimo numero di fibonacci, dato n (2 versioni, una con Divide & Conquer, una con programmazione dinamica). [soluzioni](examples/fibonacci.c "fibonacci.c")
 - **PROx2**: solve the Knapsack problem, using recursion or dynamic programming.  Given a set of items, each with a weight and a value, determine the number of each item to include in a collection so that the total weight is less than or equal to a given limit and the total value is as large as possible.  [solutions](http://ranger.uta.edu/~kosmopo/cse2320/lectures/05-Recursion_DynamicProgramming.pdf)
+
 ---
 
 with <3 by [_Luigi Masini_](https://github.com/LuigiMasini)  | [buy me a coffee](https://youtu.be/dQw4w9WgXcQ)
