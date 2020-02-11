@@ -43,7 +43,7 @@ int fat(int n){
 		return n*fat(n-1); //chiamata ricorsiva
 }
 ```
-
+	
 ---
 
 ### Ricorsione indiretta
@@ -101,10 +101,10 @@ Consumano + tempo (cicli di clock), e + memoria (min 4 byte x frame)
 Un esempio: [(recursive-hello.c)](examples/recursive-hello.c "recursive-hello.c")
 ```c
 void hello(int n){
-	if (n == 0) return; //condizione di terminazione
+	if (n == 0) return;
 	
 	printf("hello\n");
-	hello(n - 1); //la funzione richiama se stessa
+	hello(n - 1);
 }
 void main(){
 	hello(4);
@@ -121,13 +121,42 @@ Per confronto, il mio pc ne ha 1048576B reali che è già abbondante, ma  non es
 
 ## Tail call
 
+Quando la chiamata ricorsiva è l'ultima istruzione in una funzione, la ricorsione viene detta 'tail recursion'.
+
+Tramite la 'Tail call optimization' è possibile ridurre il costo di spazio di ricorsione della funzione da O(n) a O(1).
+
+>If a function is tail recursive, it's either making a simple recursive call or returning the value from that call. No computation is performed on the returned value. Thus, there is no real need to preserve the stack frame for that call. We won't need any of the local data once the tail recursive call is made: we don't have any more statements or computations left. We can simply modify the state of the frame as per the call arguments and jump back to the first statement of the function. No need to push a new stack frame! We can do this over and over again with just one stack frame! [source](https://dev.to/rohit/demystifying-tail-call-optimization-5bf3)
+
+Per esempio una funzione per il calcolo dell'n-esimo numero di [Fibonacci](examples/fibonacci.c "fibonacci.c"), con divide & conquer:
+```c
+int fibonacciDC(int n) {
+	
+	if(n == 0) return 0;
+	if(n == 1) return 1;
+	
+	return (fibonacciDC(n-1) + fibonacciDC(n-2));	//Attenzione! solo perchè è in fondo non vuol dire sia una tail call
+}
+```
+sul mio pc con `fib(200000)` arriva in `Segmentation fault`, mentre la seguente [versione con tail recursion](examples/fibonacci.c "fibonacci.c")
+```c
+int fibonacciTail(int n, int a, int b){
+	
+	if (n == 0) return a;   
+	if (n == 1) return b;
+	
+	return fibonacciTail(n - 1, b, a + b);	//tail call
+}
+```
+
+è in grado di fornirmi il risultato.
+
 ---
 
 ## Esercizi :confused: :disappointed: :broken_heart:
 
 - funzione che calcola ricorsivamente la potenza di un numero dato base ed esponente. [soluzioni](examples/potenza.c "potenza.c")
 - funzione ricorsiva che calcola il massimo comun denominatore di due interi. [soluzioni](examples/mcd.c "mcd.c")
-- **PRO**: funzione che calcoli l'n-esimo numero di fibonacci, dato n (2 versioni, una con Divide & Conquer, una con programmazione dinamica). [soluzioni](examples/fibonacci.c "fibonacci.c")
+- **PRO**: funzione che calcoli l'n-esimo numero di fibonacci (più soluzioni possibili). [soluzioni](examples/fibonacci.c "fibonacci.c")
 - **PROx2**: solve the Knapsack problem, using recursion or dynamic programming.  Given a set of items, each with a weight and a value, determine the number of each item to include in a collection so that the total weight is less than or equal to a given limit and the total value is as large as possible.  [solutions](http://ranger.uta.edu/~kosmopo/cse2320/lectures/05-Recursion_DynamicProgramming.pdf)
 
 ---

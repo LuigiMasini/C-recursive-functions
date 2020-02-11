@@ -20,15 +20,21 @@ fib(1) fib(0)
 
 */
 
+int fibonacciTail(int n, int a, int b){
+	
+	if (n == 0) return a;   
+	if (n == 1) return b;
+	
+	return fibonacciTail(n - 1, b, a + b);
+}
+
 //avoid repetition by storing values, Time Complexity:O(n)
 int fibonacciDC(int n) {
-	if(n == 0){
-		return 0;
-	} else if(n == 1) {
-		return 1;
-	} else {
-		return (fibonacciDC(n-1) + fibonacciDC(n-2));
-	}
+	
+	if(n == 0) return 0;
+	if(n == 1) return 1;
+	
+	return (fibonacciDC(n-1) + fibonacciDC(n-2));
 }
 
 int fibonacciDP(int n) { 
@@ -67,7 +73,8 @@ int fibonacciOP(int n) {
 int main() {
 	int n = 5;
 	printf("Fibonacci of %d: " , n);
-	for(int i=0;i<n;i++) {
-		printf("%d ",fibonacciOP(i));
-	}
+// 	for(int i=0;i<n;i++) {
+// 		printf("%d ",fibonacciTail(i, 0, 1));
+// 	}
+	printf("%d ",fibonacciDC(200000));
 }
