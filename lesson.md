@@ -32,7 +32,7 @@ oppure
 ### Ricorsione diretta
 L'algoritmo richiama se stesso fino al verificarsi di una condizione chiamata condizione di terminazione, che in genere si ha con particolari valori di input.
 
-_Esempio:_
+_Esempio:_ [(fat.c)](examples/fat.c)
 ```c
 int fat(int n){
 	if (n == 0) //condizione di terminazione
@@ -43,7 +43,7 @@ int fat(int n){
 void main(){
 	fat(5);
 }
-``` [(fat.c)](examples/fat.c)
+```
 
 ### Ricorsione indiretta
 Se la funzione chiama se stessa indirettamente, quindi da un'altra funzione, lei stessa deve chiamare la seconda funzione. In questo caso si dicono funzioni mutuamente ricorsive.
