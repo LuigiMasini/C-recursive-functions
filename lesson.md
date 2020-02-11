@@ -2,11 +2,13 @@
 - parametri attuali e formali
 - scope
 - visibilità
-- stack
-- funzioni ricorsive
-- ricorsione vs iterazione
-- tail call optimization
-- esercizi
+- [stack](#stack)
+- [funzioni ricorsive](Funzioni ricorsive)
+  - [definizione](#definizione)
+  - [Alcune applicazioni](#alcune-applicazioni)
+- [ricorsione vs iterazione](#ricorsione vs iterazione)
+- [tail call optimization](#tail-call)
+- [esercizi](#esercizi)
 
 ---
 
@@ -61,7 +63,7 @@ bool odd( int n ){
 
 ---
 
-### Spesso usato con:
+### Alcune applicazioni:
 
 [link]:https://medium.com/@maheshkariya/difference-between-divide-and-conquer-algo-and-dynamic-programming-4a657bcb6187
 
@@ -81,7 +83,7 @@ L'esecuzione dell'algoritmo su un insieme di dati comporta la semplificazione o 
 
 ---
 
-## Ricorsione vs iterazione
+## Ricorsione vs Iterazione
 
 *"asking recursion or iteration is like asking for elegance or performance."* **[SO](https://stackoverflow.com/a/15346857/10388096 "StackOverflow")**
 
