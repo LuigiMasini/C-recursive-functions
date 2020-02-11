@@ -3,10 +3,12 @@
 - scope
 - visibilità
 - [stack](#stack)
-- [funzioni ricorsive](Funzioni ricorsive)
+- [funzioni ricorsive](#funzioni-ricorsive)
   - [definizione](#definizione)
+  - [Ricorsione diretta](#ricorsione-diretta)
+  - [Ricorsione indiretta](#ricorsione-indiretta)
   - [Alcune applicazioni](#alcune-applicazioni)
-- [ricorsione vs iterazione](#ricorsione vs iterazione)
+- [ricorsione vs iterazione](#ricorsione-vs-iterazione)
 - [tail call optimization](#tail-call)
 - [esercizi](#esercizi)
 
@@ -27,6 +29,7 @@ oppure
 
 >Un algoritmo ricorsivo è un algoritmo espresso in termini di se stesso
 
+### Ricorsione diretta
 L'algoritmo richiama se stesso fino al verificarsi di una condizione chiamata condizione di terminazione, che in genere si ha con particolari valori di input.
 
 _Esempio:_
@@ -40,10 +43,10 @@ int fat(int n){
 void main(){
 	fat(5);
 }
-```
+``` [(fat.c)](examples/fat.c)
 
+### Ricorsione indiretta
 Se la funzione chiama se stessa indirettamente, quindi da un'altra funzione, lei stessa deve chiamare la seconda funzione. In questo caso si dicono funzioni mutuamente ricorsive.
-
 
 _Esempio:_
 ```c
@@ -85,7 +88,7 @@ L'esecuzione dell'algoritmo su un insieme di dati comporta la semplificazione o 
 
 ## Ricorsione vs Iterazione
 
-*"asking recursion or iteration is like asking for elegance or performance."* **[SO](https://stackoverflow.com/a/15346857/10388096 "StackOverflow")**
+*"asking recursion or iteration is like asking for elegance or performance."* [**SO**](https://stackoverflow.com/a/15346857/10388096 "StackOverflow")
 
 | | Ricorsione | Iterazione |
 |-| ---------- | ---------- |
