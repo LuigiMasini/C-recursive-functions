@@ -69,7 +69,7 @@ bool odd( int n ){
 
 ### Alcune applicazioni:
 
-[link]:https://medium.com/@maheshkariya/difference-between-divide-and-conquer-algo-and-dynamic-programming-4a657bcb6187
+[link]:https://medium.com/@maheshkariya/difference-between-divide-and-conquer-algo-and-dynamic-programming-4a657bcb6187 "Medium"
 
 - #### divide et impera / divide & conquer:
 
@@ -123,7 +123,7 @@ Per confronto, il mio pc ne ha 1048576B reali che è già abbondante, ma  non es
 
 ---
 
-## Esercizi :/ </3
+## Esercizi :confused: :disappointed: :broken_heart:
 
 - funzione che calcola ricorsivamente la potenza di un numero dato base ed esponente. [soluzioni](examples/potenza.c "potenza.c")
 - funzione ricorsiva che calcola il massimo comun denominatore di due interi. [soluzioni](examples/mcd.c "mcd.c")
@@ -132,4 +132,4 @@ Per confronto, il mio pc ne ha 1048576B reali che è già abbondante, ma  non es
 
 ---
 
-with <3 by [_Luigi Masini_](https://github.com/LuigiMasini)  | [buy me a coffee](https://youtu.be/dQw4w9WgXcQ)
+with :heart: by [_Luigi Masini_](https://github.com/LuigiMasini)  | [buy me a coffee](https://youtu.be/dQw4w9WgXcQ)
