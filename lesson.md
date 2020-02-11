@@ -67,8 +67,6 @@ Non appena la funzione finisce l'esecuzione, il valore restituito viene passato 
 La dimensione di ogni frame va da minimo 4 byte a centinaia di kilobyte. Ad ogni chiamata di funzione questo spazio verrà occupato, ed avendo lo stack una dimensione fissa può accadere che finisca la memoria (`Stack overflow`)
 **Ogni chiamata di funzione ha** quindi anche un **costo di memoria** e cicli di clock ( **tempo** ).
 
-![stack structure](https://kuafu1994.github.io/HackWithGDB/figs/stack.png)
-
 [approfondimenti](http://www.dis.uniroma1.it/~liberato/struct/ricorsione/recatt.shtml)
 
 ---
