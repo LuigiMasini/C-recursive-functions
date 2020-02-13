@@ -39,12 +39,12 @@ A differenza delle locali, le globali vengono inizializzate automaticamente a 0 
 
 #### Parametri
 Sono variabili dichiarate insieme al prototipo della funzione, e hanno come scope tutta la funzione, trattate come fossero variabili locali.
-Vengono inizzializzate al momento della chiamata.
+Vengono inizializzate al momento della chiamata.
 
 Questo viene detto **parametro formale**. 
 `int func(int a, int b)`, _a_ e _b_ sono parametri formali
 
-Invece le variabili i cui valori vengono passati alla funzione sono detti **parametri attuali** e nel momento della chiamata vanno ad inizzializzare i parametri formali.
+Invece le variabili i cui valori vengono passati alla funzione sono detti **parametri attuali** e nel momento della chiamata vanno ad inizializzare i parametri formali.
 Non hanno un proprio scopo specifico.
 
 `func(5, 10)`, _5_ e _10_ sono parametri attuali, dopo questa chiamata, il programma inizia a svolgere 'func', con _a = 5_ e _b = 10_.
@@ -126,7 +126,7 @@ Detto anche 'divide et impera'
 
 >Divide and Conquer works by dividing the problem into sub-problems, conquer each sub-problem recursively and combine these solutions. ([source][link])
 
-L'esecuzione dell'algoritmo su un insieme di dati comporta la semplificazione o suddivisione dell'insieme di dati e l'applicazione dello stesso algoritmo agli insiemi di dati semplificati.(è il caso dell'_esempio 1_, del _binary search_ e _Quicksort_ )
+L'esecuzione dell'algoritmo su un insieme di dati comporta la semplificazione o suddivisione dell'insieme di dati e l'applicazione dello stesso algoritmo agli insiemi di dati semplificati.(è il caso dell'_esempio 1_, del _binary search_ e _Quicksort_)
 
 È il metodo più elegante, ma spesso porta a ripetere calcoli già svolti.
 
@@ -134,7 +134,7 @@ L'esecuzione dell'algoritmo su un insieme di dati comporta la semplificazione o 
 
 >Dynamic Programming is a technique for solving problems with overlapping subproblems. Each sub-problem is solved only once and the result of each sub-problem is stored in a table ( generally implemented as an array or a hash table) for future references. These sub-solutions may be used to obtain the original solution and the technique of storing the sub-problem solutions is known as memoization. ([source][link])
 
-![](https://media.geeksforgeeks.org/wp-content/uploads/01-DP-vs-DC-DP-vs-DC-diagram-1024x492.png) [source](https://www.geeksforgeeks.org/dynamic-programming-vs-divide-and-conquer/ "G4G, Dynamic programming vs Divide and conquer")
+![Dynamic programming in a nutshell](https://media.geeksforgeeks.org/wp-content/uploads/01-DP-vs-DC-DP-vs-DC-diagram-1024x492.png) [source](https://www.geeksforgeeks.org/dynamic-programming-vs-divide-and-conquer/ "G4G, Dynamic programming vs Divide and conquer")
 
 ---
 
@@ -187,7 +187,8 @@ int fibonacciDC(int n) {
 	if(n == 0) return 0;
 	if(n == 1) return 1;
 	
-	return (fibonacciDC(n-1) + fibonacciDC(n-2));	//Attenzione! solo perchè è in fondo non vuol dire sia una tail call
+	return (fibonacciDC(n-1) + fibonacciDC(n-2));
+	//Attenzione! solo perchè è in fondo non vuol dire sia una tail call
 }
 ```
 sul mio pc con `fib(200000)` arriva in `Segmentation fault`, mentre la seguente [versione con tail recursion](examples/fibonacci.c "fibonacci.c")
